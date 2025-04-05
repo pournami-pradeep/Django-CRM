@@ -54,6 +54,22 @@ def add_record(request):
         return render(request,'add_record.html',{'form':form})
     form = RecordForm()
     return render(request,'add_record.html',{'form':form})
+
+def update_record(request,pk):
+    if request.user.is_authenticated:
+        try:
+            record = Record.objects.get(id=pk)
+        except:
+            return render(request,'page_not_found.html',{})
+        form = RecordForm(request.POST or None,instance=record)
+        if form.is_valid():
+            form.save()
+            messages.success(request,"Record Updated successfully.")
+            return redirect('home')
+        return render(request,'update_record.html',{'form':form})
+    messages.success(request,"Please Log in")
+    return render(request, 'home.html',{})
+
         
 
 def customer_record(request,pk):

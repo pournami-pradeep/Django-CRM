@@ -31,6 +31,15 @@ class UserSignUpForm(UserCreationForm):
 
 
 class RecordForm(ModelForm):
+    first_name = forms.CharField(label="First Name", max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':"First Name"}))
+    last_name = forms.CharField(label="Last Name", max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':"Last Name"}))
+    email = forms.EmailField(label="Email",widget=forms.EmailInput(attrs={'class':'form-control','placeholder':"Email"}))
+    phone = forms.CharField(label="Phone Number", max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':"Phone Number"}))
+    address = forms.CharField(label="Address", max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':"Address"}))
+    city = forms.CharField(label="City", max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':"City"}))
+    state = forms.CharField(label="State", max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':"State"}))
+    zipcode = forms.CharField(label="Zipcode", max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':"Zipcode"}))
+
     class Meta:
         model = Record
         fields = ["first_name","last_name","email","phone","address","city","state","zipcode"]
