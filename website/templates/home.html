@@ -1,9 +1,33 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="col-md-6 offset-md-3">
+
     {% if user.is_authenticated %}
-    <h1>Records</h1>
+        {% if records %}
+            <table class="table table-success table-striped table-hover">
+                
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone Number</th>
+                </tr>
+               
+            <tbody class="table-group-divider">
+            {% for record in records %}
+                <tr>
+                    <td>{{record.first_name}} {{record.last_name}}</td>
+                    <td>{{record.address}}</td>
+                    <td>{{record.email}}</td>
+                    <td>{{record.phone}}</td>
+                </tr>
+            {% endfor %}
+                </thead>
+            </table>
+        {% else %}
+            <h1> No data is available</h1>
+        {% endif %}
     {% else %}
     <h1>Login</h1>
     <form method="POST" action="{% url 'home' %}">
@@ -23,6 +47,6 @@
 
     </form>
     
-</div>
+
 {% endif %}
 {% endblock %}
