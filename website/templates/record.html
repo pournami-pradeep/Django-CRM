@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col-md-6 offset-md-3"> 
+    <div class="card border-success mb-3 card text-center" style="max-width: 38rem;">
+        <div class="card-header">{{record.first_name}} {{record.last_name}}</div>
+        <div class="card-body">
+            <p class="card-text"><strong>Email: </strong>{{record.email}}</p>
+            <p class="card-text"><strong>Phone number: </strong>{{record.phone}}</p>
+            <p class="card-text"><strong>Address: </strong>{{record.address}}</p>
+            <p class="card-text"><strong>City: </strong>{{record.city}}</p>
+            <p class="card-text"><strong>Zipcode: </strong>{{record.zipcode}}</p>
+        </div>
+    </div>
+    <a href= "{% url 'home' %}">
+        <button type="button" class="btn btn-primary">Back</button>
+    </a>
+    
+   
+    <a href= "{% url 'delete' record.id %}">
+        <button type="button" class="btn btn-danger">Delete</button>
+    </a>
+
+    
+
+</div>
+
+
+
+{% endblock %}

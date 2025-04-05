@@ -3,7 +3,7 @@
 {% block content %}
 
     {% if user.is_authenticated %}
-        {% if records %}
+        
             <table class="table table-success table-striped table-hover">
                 
                 <thead class="table-dark">
@@ -16,18 +16,24 @@
                
             <tbody class="table-group-divider">
             {% for record in records %}
-                <tr>
-                    <td>{{record.first_name}} {{record.last_name}}</td>
-                    <td>{{record.address}}</td>
-                    <td>{{record.email}}</td>
-                    <td>{{record.phone}}</td>
-                </tr>
+                
+                    <tr>
+                        <td><a href="{% url 'record' record.id %}" >{{record.first_name}} {{record.last_name}}</a></td>
+                        <td>{{record.address}}</td>
+                        <td>{{record.email}}</td>
+                        <td>{{record.phone}}</td>
+                    </tr>
+                
             {% endfor %}
                 </thead>
             </table>
-        {% else %}
-            <h1> No data is available</h1>
-        {% endif %}
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+
+                <a href= "{% url 'add-record' %}">
+                    <button type="button" class="btn btn-warning">Create Record</button>
+                </a>
+            </div>
+        
     {% else %}
     <h1>Login</h1>
     <form method="POST" action="{% url 'home' %}">
